@@ -10,7 +10,8 @@ RUN apk add --no-cache nfs-utils bash && \
 
 COPY exports /etc/
 COPY nfsd.sh /usr/bin/nfsd.sh
+COPY exports.sh /usr/bin/exports.sh
 
-RUN chmod +x /usr/bin/nfsd.sh
+RUN chmod +x /usr/bin/nfsd.sh /usr/bin/exports.sh
 
 ENTRYPOINT ["/usr/bin/nfsd.sh"]
