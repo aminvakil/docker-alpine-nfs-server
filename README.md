@@ -41,6 +41,10 @@ The /etc/exports file contains these parameters unless modified by the environme
 
 Note that the `showmount` command won't work against the server as rpcbind isn't running.
 
+### Mounting your own exports (advanced)
+
+To mount a custom exports file, set `-e EXPORTS_MOUNTED=true` and mount a valid exports file at `/etc/exports`. **Warning:** If this environment variable is set none of the other configuration env variables will have any effect. Use with caution.
+
 ### Privileged Mode
 
 You'll note above with the `docker run` command that privileged mode is required. Yes, this is a security risk but an unavoidable one it seems. You could try these instead: `--cap-add SYS_ADMIN --cap-add SETPCAP --security-opt=no-new-privileges` but I've not had any luck with them myself. You may fare better with your own combination of Docker and OS. The SYS_ADMIN capability is very, very broad in any case and almost as risky as privileged mode.
