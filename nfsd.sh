@@ -87,7 +87,7 @@ while true; do
   done
 
   # Set thread count after startup
-  if [ -n "${NFS_THREADS}" ]; then
+  if [ -n "${NFS_THREADS:-}" ]; then
     echo "${NFS_THREADS}" > /proc/fs/nfsd/threads 2>/dev/null
   fi
   echo "NFS running with $(cat /proc/fs/nfsd/threads) worker threads"
