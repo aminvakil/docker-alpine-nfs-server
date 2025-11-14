@@ -70,7 +70,7 @@ while true; do
       echo "Export validation failed, exiting..."
       exit 1
     fi
-    echo "Starting Mountd in the background..."These
+    echo "Starting Mountd in the background..."
     /usr/sbin/rpc.mountd --debug all --no-udp --no-nfs-version 3
 # --exports-file /etc/exports
 
@@ -85,6 +85,12 @@ while true; do
     fi
 
   done
+
+  # Set thread count after startup
+  if [ -n "${NFS_THREADS}" ]; then
+    echo "${NFS_THREADS}" > /proc/fs/nfsd/threads 2>/dev/null
+  fi
+  echo "NFS running with $(cat /proc/fs/nfsd/threads) worker threads"
 
   # Break this outer loop once we've started up successfully
   # Otherwise, we'll silently restart and Docker won't know
