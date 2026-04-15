@@ -1,4 +1,4 @@
-FROM alpine:3.23.3
+FROM alpine:3.23.4
 ENV container docker
 LABEL maintainer="Amin Vakil <info@aminvakil.com>"
 
